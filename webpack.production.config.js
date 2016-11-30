@@ -1,12 +1,17 @@
 var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
+var CleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-	entry: __dirname + "/app/main.js",
+	//devtool: "eval-source-map",
+	entry: {
+		main: __dirname + "/app/main.js",
+		vender: ['react', 'react-dom']
+	},
 	output: {
-		path: __dirname + "/public",
-		filename: "bundle.js",
+		path: __dirname + "/build",
+		filename: "[name].[chunkhash].js",
 	},
 	module: {
 		loaders: [
@@ -25,18 +30,26 @@ module.exports = {
 			// }
 			{
 				test: /\.less$/,
-				loader: "style!css!less"
+				loader: ExtractTextPlugin.extract('style', 'css!less')
 			}
 		]
 	},
 	plugins: [
-		new webpack.BannerPlugin("版权声明"),
+		new webpack.BannerPlugin("wyf"),
+		new webpack.DefinePlugin({
+			'process.env': {
+			'NODE_ENV': '"production"'
+			}
+	    }),
 		new HtmlWebpackPlugin({
 			template: __dirname + "/app/index.html",
-			filename: __dirname + "/web-info/view/index2.html",
-			hash: true
+			filename: __dirname + "/build/index.html"
 		}),
-		new ExtractTextPlugin("style.css"),
-		new webpack.optimize.UglifyJsPlugin()
+		new ExtractTextPlugin("style.[chunkhash].css"),
+		new webpack.optimize.CommonsChunkPlugin({
+            names: ['vender']
+        }),
+		//new webpack.optimize.UglifyJsPlugin(),
+		new CleanWebpackPlugin([__dirname + "/build"])
 	]
 }

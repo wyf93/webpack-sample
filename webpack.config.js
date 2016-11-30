@@ -6,8 +6,8 @@ module.exports = {
 	devtool: "eval-source-map",
 	entry: __dirname + "/app/main.js",
 	output: {
-		path: __dirname + "/public",
-		filename: "bundle.js",
+		//path: __dirname + "/public",
+		filename: "main.js"
 	},
 	module: {
 		loaders: [
@@ -34,16 +34,16 @@ module.exports = {
 		new webpack.BannerPlugin("版权声明"),
 		new HtmlWebpackPlugin({
 			template: __dirname + "/app/index.html",
-			filename: __dirname + "/web-info/view/index2.html",
-			hash: true
-		})
-		//new ExtractTextPlugin("style.css")
+			//filename: __dirname + "/public/index.html"
+		}),
+		new webpack.HotModuleReplacementPlugin()
 	],
 	devServer: {
-		contentBase: "./public", //本地服务器目录
+		//contentBase: "./public", //本地服务器目录
 		colors: true, //终端输出结果为彩色
 		inline: true, //实时刷新
 		historyFallback: true, //不跳转
-		port: "8888"
+		port: "8880",
+		hot: true
 	}
 }
