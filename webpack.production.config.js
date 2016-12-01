@@ -49,7 +49,7 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({
             names: ['vender']
         }),
-		//new webpack.optimize.UglifyJsPlugin(),
+		new webpack.optimize.UglifyJsPlugin(),
 		new CleanWebpackPlugin([__dirname + "/build"])
 	]
 }

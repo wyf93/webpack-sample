@@ -1,0 +1,2 @@
+/*! wyf */
+html{box-sizing:border-box;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}*,:after,:before{box-sizing:inherit}body{margin:0;font-family:Helvetica Neue,Helvetica,Arial,sans-serif}h1,h2,h3,h4,h5,h6,p,ul{margin:0;padding:0}html body{color:blue}.example-enter{opacity:.01}.example-enter.example-enter-active{opacity:1;transition:opacity .5s ease-in}.example-leave{opacity:1}.example-leave.example-leave-active{opacity:.01;transition:opacity .3s ease-in}
