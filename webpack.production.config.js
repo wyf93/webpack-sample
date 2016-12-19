@@ -2,12 +2,12 @@ var webpack = require("webpack");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var autoprefixer = require("autoprefixer");
 
 module.exports = {
-	//devtool: "eval-source-map",
 	entry: {
 		main: __dirname + "/app/main.js",
-		vender: ['react', 'react-dom']
+		vender: ['react', 'react-dom', 'iscroll/build/iscroll-probe', 'reqwest']
 	},
 	output: {
 		path: __dirname + "/build",
@@ -30,10 +30,11 @@ module.exports = {
 			// }
 			{
 				test: /\.less$/,
-				loader: ExtractTextPlugin.extract('style', 'css!less')
+				loader: ExtractTextPlugin.extract('style', 'css!postcss!less')
 			}
 		]
 	},
+	postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
 	plugins: [
 		new webpack.BannerPlugin("wyf"),
 		new webpack.DefinePlugin({
@@ -49,7 +50,6 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({
             names: ['vender']
         }),
-		new webpack.optimize.UglifyJsPlugin(),
 		new CleanWebpackPlugin([__dirname + "/build"])
 	]
 }

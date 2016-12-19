@@ -4,7 +4,9 @@ import {Link} from 'react-router';
 export default class Page1 extends Component {
 	render() {
 		return (
-			<div><Link to="/page2">page11</Link></div>
+			<div className="page">
+				<Link to="/page2">page11</Link>
+			</div>
 		);
 	}
 }

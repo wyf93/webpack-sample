@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import '../style/animation.less';
 
-import './app.less';
+import '../style/app.less';
 
 export default class App extends Component {
 	render() {
 		return (
-			<div className="App">
+			<div id="ReactCSSTransitionGroup">
 				<ReactCSSTransitionGroup
 		          transitionName="example"
 		          transitionAppear={true}

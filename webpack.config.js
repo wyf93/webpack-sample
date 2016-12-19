@@ -26,10 +26,11 @@ module.exports = {
 			// },
 			{
 				test: /\.less$/,
-				loader: "style!css!less"
+				loader: "style!css!postcss!less"
 			}
 		]
 	},
+	postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
 	plugins: [
 		new webpack.BannerPlugin("版权声明"),
 		new HtmlWebpackPlugin({
